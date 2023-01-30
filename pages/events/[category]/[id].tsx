@@ -1,5 +1,5 @@
-function Page() {
-  return <div>Hallow</div>;
+function Event() {
+  return <div>Single Event</div>;
 }
 
-export default Page;
+export default Event;

@@ -2,14 +2,15 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
+import { EventCategories } from "helpers/types";
 
 const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
-  title: "string";
+  data: EventCategories[];
 };
 
-export default function Home({ title }: Props) {
+export default function Home({ data }: Props) {
   return (
     <>
       <Head>
@@ -28,47 +29,19 @@ export default function Home({ title }: Props) {
         </nav>
       </header>
 
-      <h1>{title}</h1>
-
       <main className={styles.main}>
-        <a href="">
-          <img />
-          <h2>Events in London</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic cum ea
-            provident maxime autem. Id deleniti sapiente tempore voluptatem
-            necessitatibus molestiae sequi earum, ea rem dolor iure temporibus
-            est aperiam vel asperiores cumque. Recusandae neque nihil sint
-            minima enim. Delectus earum quo voluptate tempora enim quod
-            aspernatur corrupti maiores vero!
-          </p>
-        </a>
-
-        <a href="">
-          <img />
-          <h2>Events in San Francisco</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic cum ea
-            provident maxime autem. Id deleniti sapiente tempore voluptatem
-            necessitatibus molestiae sequi earum, ea rem dolor iure temporibus
-            est aperiam vel asperiores cumque. Recusandae neque nihil sint
-            minima enim. Delectus earum quo voluptate tempora enim quod
-            aspernatur corrupti maiores vero!
-          </p>
-        </a>
-
-        <a href="">
-          <img />
-          <h2>Events in Bacelona</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic cum ea
-            provident maxime autem. Id deleniti sapiente tempore voluptatem
-            necessitatibus molestiae sequi earum, ea rem dolor iure temporibus
-            est aperiam vel asperiores cumque. Recusandae neque nihil sint
-            minima enim. Delectus earum quo voluptate tempora enim quod
-            aspernatur corrupti maiores vero!
-          </p>
-        </a>
+        {data.map((event) => (
+          <a key={event.id} href={`/events/${event.id}`}>
+            <Image
+              src={event.image}
+              alt={event.title}
+              width={200}
+              height={200}
+            />
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </a>
+        ))}
       </main>
 
       <footer className={styles.footer}>
@@ -78,10 +51,13 @@ export default function Home({ title }: Props) {
   );
 }
 
-export function getServerSideProps() {
+export async function getServerSideProps() {
+  const data = await import("../data/data.json");
+  const { events_categories } = data;
+
   return {
     props: {
-      title: "Hello everyone",
+      data: events_categories,
     },
   };
 }
