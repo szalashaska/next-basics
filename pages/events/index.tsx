@@ -1,17 +1,18 @@
 import { EventCategories } from "helpers/types";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   data: EventCategories[];
 };
 
-export default function Events({ data }: Props) {
+export default function EventsPage({ data }: Props) {
   return (
     <div>
       <h1> Events </h1>
       <div>
         {data.map((event) => (
-          <a key={event.id} href={`/events/${event.id}`}>
+          <Link key={event.id} href={`/events/${event.id}`}>
             <Image
               src={event.image}
               width={100}
@@ -19,7 +20,7 @@ export default function Events({ data }: Props) {
               alt={event.title}
             />
             <h2>{event.title}</h2>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
@@ -27,7 +28,7 @@ export default function Events({ data }: Props) {
 }
 
 export async function getStaticProps() {
-  const data = await import("../../data/data.json");
+  const data = await import("data/data.json");
   const { events_categories } = data;
 
   return {

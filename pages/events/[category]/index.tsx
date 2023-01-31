@@ -1,28 +1,36 @@
 import { AllEvents } from "helpers/types";
 import { GetStaticPropsContext } from "next";
 import Image from "next/image";
+import Link from "next/link";
 type Props = {
   data: AllEvents[];
+  eventId: string;
 };
 
-function Category({ data }: Props) {
+export default function CategoryPage({ data, eventId }: Props) {
   return (
-    <div>
-      {data.map((event) => (
-        <a key={event.id} href={`/events/${event.city}/${event.id}`}>
-          <Image src={event.image} width={100} height={100} alt={event.title} />
-          <h2>{event.title}</h2>
-          <p>{event.description}</p>
-        </a>
-      ))}
-    </div>
+    <>
+      <h1>Events in {eventId}</h1>
+      <div>
+        {data.map((event) => (
+          <Link key={event.id} href={`/events/${event.city}/${event.id}`}>
+            <Image
+              src={event.image}
+              width={100}
+              height={100}
+              alt={event.title}
+            />
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 }
 
-export default Category;
-
 export async function getStaticPaths() {
-  const data = await import("../../../data/data.json");
+  const data = await import("data/data.json");
   const { events_categories } = data;
 
   const allPaths = events_categories.map((event) => ({
@@ -40,13 +48,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const id = context?.params?.category;
-  const data = await import("../../../data/data.json");
+  const data = await import("data/data.json");
   const { allEvents } = data;
   const currentData = allEvents.filter((event) => event.city === id);
 
   return {
     props: {
       data: currentData,
+      eventId: id,
     },
   };
 }
