@@ -1,9 +1,10 @@
 // import Image from "next/image";
 import Link from "next/link";
+import styles from "@/styles/Header.module.scss";
 
 export default function Header() {
   return (
-    <header>
+    <header className={styles.elo}>
       <div>
         {/* <Image
           src={"images/logo_black.png"}
