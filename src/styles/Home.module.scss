@@ -1,0 +1,25 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    &:nth-child(even) {
+      direction: rtl;
+    }
+    .content {
+      width: 50%;
+    }
+    .image {
+      position: relative;
+      aspect-ratio: 905/1131;
+      width: 40%;
+    }
+  }
+}

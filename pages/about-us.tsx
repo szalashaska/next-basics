@@ -16,6 +16,25 @@ export default function AboutUs() {
         officia ratione. Sit nesciunt illum quia consequuntur in repudiandae
         nisi enim ipsum.
       </p>
+      <h2>
+        Modtias excepturi, neque explicabo tenetur aperiam quo voluptatibus
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+        reiciendis hic impedit nobis, ipsum temporibus porro sunt, eos
+        accusantium, harum qui laboriosam! Velit sint quod odit maiores quo
+        quisquam aliquid praesentium molestiae qui consequuntur et, repellendus
+        aspernatur aperiam officiis distinctio, alias voluptatibus dolore magnam
+        cupiditate eligendi eaque eveniet. Itaque modi corrupti reiciendis
+        molestias excepturi, neque explicabo tenetur aperiam quo voluptatibus
+      </p>
+      <h3>olor sit amet consect</h3>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+        reiciendis hic impedit nobis, ipsum temporibus porro sunt, eos
+        accusantium, harum qui laboriosam! Velit sint quod odit maiores quo
+        quisquam aliquid pralicabo tenetur aperiam quo voluptatibus
+      </p>
     </div>
   );
 }

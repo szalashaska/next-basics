@@ -1,6 +1,7 @@
 import { EventCategories } from "helpers/types";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/styles/Home.module.scss";
 
 type Props = {
   data: EventCategories[];
@@ -8,14 +9,22 @@ type Props = {
 
 export default function Home({ data }: Props) {
   return (
-    <main>
+    <div className={styles.home}>
       {data.map((event) => (
-        <Link key={event.id} href={`/events/${event.id}`}>
-          <Image src={event.image} alt={event.title} width={200} height={200} />
-          <h2>{event.title}</h2>
-          <p>{event.description}</p>
+        <Link
+          className={styles.card}
+          key={event.id}
+          href={`/events/${event.id}`}
+        >
+          <div className={styles.image}>
+            <Image src={event.image} alt={event.title} fill />
+          </div>
+          <div className={styles.content}>
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </div>
         </Link>
       ))}
-    </main>
+    </div>
   );
 }

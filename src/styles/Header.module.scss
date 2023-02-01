@@ -1,3 +1,39 @@
-.elo {
-  background: red;
+.header {
+  background: linear-gradient(305deg, #dbfff3, transparent);
+  padding: 15px 30px;
+
+  div {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    width: 50%;
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .topNav {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    ul {
+      display: flex;
+      text-decoration: none;
+      list-style: none;
+      gap: 15px;
+
+      li {
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+  }
 }
