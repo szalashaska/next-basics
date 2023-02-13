@@ -9,5 +9,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "Elo Ziom" });
+  const { method } = req;
+  if (method === "POST") {
+  }
 }

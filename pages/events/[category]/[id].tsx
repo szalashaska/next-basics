@@ -1,19 +1,13 @@
+import Event from "@/compontents/Events/Event";
 import { AllEvents } from "helpers/types";
 import { GetStaticPropsContext } from "next";
-import Image from "next/image";
 
 type Props = {
   data: AllEvents;
 };
 
 export default function EventPage({ data }: Props) {
-  return (
-    <div>
-      <Image src={data.image} alt={data.title} width={800} height={500} />
-      <h1>{data.title}</h1>
-      <p>{data.description} </p>
-    </div>
-  );
+  return <Event data={data} />;
 }
 
 export async function getStaticPaths() {

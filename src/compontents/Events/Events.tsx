@@ -16,7 +16,7 @@ export default function Events({ data }: Props) {
           key={event.id}
           href={`/events/${event.id}`}
         >
-          <Image src={event.image} width={500} height={500} alt={event.title} />
+          <Image src={event.image} width={400} height={400} alt={event.title} />
           <h2>{event.title}</h2>
         </Link>
       ))}

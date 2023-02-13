@@ -25,7 +25,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <h1 className={styles.title}>Lorem ipsum dolor sit amet consectetur</h1>
+        <p className={styles.title}>Lorem ipsum dolor sit amet consectetur</p>
       </div>
     </header>
   );

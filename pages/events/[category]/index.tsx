@@ -1,32 +1,14 @@
-import { AllEvents } from "helpers/types";
 import { GetStaticPropsContext } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { AllEvents } from "helpers/types";
+import EventsCategory from "@/compontents/Events/EventsCategory";
+
 type Props = {
   data: AllEvents[];
   eventId: string;
 };
 
 export default function CategoryPage({ data, eventId }: Props) {
-  return (
-    <>
-      <h1>Events in {eventId}</h1>
-      <div>
-        {data.map((event) => (
-          <Link key={event.id} href={`/events/${event.city}/${event.id}`}>
-            <Image
-              src={event.image}
-              width={100}
-              height={100}
-              alt={event.title}
-            />
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-          </Link>
-        ))}
-      </div>
-    </>
-  );
+  return <EventsCategory data={data} eventId={eventId} />;
 }
 
 export async function getStaticPaths() {
