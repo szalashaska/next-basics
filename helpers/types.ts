@@ -1,4 +1,4 @@
-export type EventCategories = {
+export type EventsCategories = {
   id: string;
   title: string;
   description: string;

@@ -1,8 +1,8 @@
 import Events from "@/compontents/Events/Events";
-import { EventCategories } from "helpers/types";
+import { EventsCategories } from "helpers/types";
 
 type Props = {
-  data: EventCategories[];
+  data: EventsCategories[];
 };
 
 export default function EventsPage({ data }: Props) {

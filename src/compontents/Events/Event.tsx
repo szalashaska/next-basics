@@ -1,26 +1,48 @@
 import { AllEvents } from "helpers/types";
 import Image from "next/image";
 import styles from "@/styles/Events.module.scss";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 type Props = {
   data: AllEvents;
 };
+const validRegex: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export default function Event({ data }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
+  const [message, setMessage] = useState<string>("");
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setMessage("");
     if (!inputRef.current || !router) return;
-    const emailValue = inputRef.current.value;
+    const emailAddress = inputRef.current.value;
     const eventId = router.query.id;
 
+    if (!emailAddress.match(validRegex)) {
+      setMessage("Enter a valid address");
+      return;
+    }
     try {
+      const req = await fetch("/api/email-registration", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailAddress,
+          eventId,
+        }),
+      });
+      if (!req.ok) throw new Error(`Error: ${req.status}`);
+      const res = await req.json();
+      setMessage(res.message);
+      inputRef.current.value = "";
     } catch (err) {
-      console.log(err);
+      console.log("Error occured:", err);
     }
   };
 
@@ -40,6 +62,7 @@ export default function Event({ data }: Props) {
         />
         <button type="submit">Submit</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 }
